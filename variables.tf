@@ -1,6 +1,6 @@
 variable "bucket_name" {
   type        = string
-  description = "Name of the backend s3 bucket for creation."
+  description = "Name of the backend s3 bucket for creation"
 }
 
 variable "bucket_location" {
