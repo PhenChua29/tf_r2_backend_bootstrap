@@ -30,6 +30,10 @@ Ensure these input variables are supplied (e.g., in a `terraform.tfvars` file or
 - `cloudflare_account_id`: Your Cloudflare account ID.
 - `bucket_name`: The name of the R2 bucket to create.
 
+Optional variables:
+
+- `bucket_location`: The location of the R2 bucket to create. Available values: "apac", "eeur", "enam", "weur", "wnam", "oc".
+
 ### Bucket Creation
 
 With everything set up, we can now run:
