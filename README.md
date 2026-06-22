@@ -1,8 +1,10 @@
-# Backend bootstraping terraform module
+# Backend Bootstrapping Terraform Module
 
-This module bootstraps terraform backend, using `Cloudflare R2 S3 buckets`.
+This Terraform module bootstraps a Cloudflare R2 bucket and then generates a read-write token for the newly created bucket.
 
-## Usage guide
+The module was made for fast bootstrapping of S3 backends.
+
+## Usage Guide
 
 ### Prerequisites
 
@@ -28,9 +30,9 @@ Ensure these input variables are supplied (e.g., in a `terraform.tfvars` file or
 - `cloudflare_account_id`: Your Cloudflare account ID.
 - `bucket_name`: The name of the R2 bucket to create.
 
-### Bucket creation
+### Bucket Creation
 
-With all the things set up, we can now run:
+With everything set up, we can now run:
 
 ```bash
 terraform init
@@ -38,18 +40,18 @@ terraform plan -out tfplan
 terraform apply tfplan
 ```
 
-### Using the newly created s3 backend
+### Using the Newly Created S3 Backend
 
-After successfully running the above scripts, check the s3 backend info:
+After successfully running the above commands, check the S3 backend info:
 
 - `endpoints.s3`: `terraform output endpoint`
 - `AWS_ACCESS_KEY_ID`: `terraform output token_key_id`
 - `AWS_SECRET_ACCESS_KEY`: `terraform output token_key_secret`
 
-To use the created s3 backend:
+To use the created S3 backend:
 
-1. Keep the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY exported for backend config
-2. Setup this block in the `terraform` block
+1. Keep `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` exported for backend configuration.
+2. Set up this block in the `terraform` block:
 
 ```terraform
   backend "s3" {
