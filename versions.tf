@@ -11,10 +11,6 @@ terraform {
       version = "~> 0.16.28"
     }
   }
-
-  backend "local" {
-    path = "state/terraform.state"
-  }
 }
 
 provider "cloudflare" {}
