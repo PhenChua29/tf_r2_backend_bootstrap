@@ -14,15 +14,8 @@ Before running the module, make sure the following requirements are met:
 
 #### Environment Variables
 
-- `INFISICAL_UNIVERSAL_AUTH_CLIENT_ID`: Machine identity client ID with read access to the project.
-- `INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET`: Machine identity client secret.
 - `AWS_DEFAULT_REGION`: Set to `auto` or any dummy value to satisfy the AWS S3 SDK (since connections are routed via S3 endpoints).
-
-#### Infisical Secrets
-
-In the Infisical workspace (specified by `infisical_project_id`) under the folder path (specified by `infisical_folder_path`) for the environment (specified by `infisical_env_slug`), ensure the following secret exists:
-
-- `cloudflare_api_token`: A Cloudflare Account API token with these permissions:
+- `CLOUDFLARE_API_TOKEN`: A Cloudflare Account API token with the following permissions:
   - Account API Tokens Write
   - Account API Tokens Read
   - Workers R2 Storage Write
@@ -34,9 +27,6 @@ Ensure these input variables are supplied (e.g., in a `terraform.tfvars` file or
 
 - `cloudflare_account_id`: Your Cloudflare account ID.
 - `bucket_name`: The name of the R2 bucket to create.
-- `infisical_project_id`: Infisical project/workspace ID.
-- `infisical_folder_path`: Folder path to secrets in Infisical.
-- `infisical_env_slug`: Infisical environment slug.
 
 ### Bucket creation
 
