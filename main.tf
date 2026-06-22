@@ -16,7 +16,7 @@ data "cloudflare_account_api_token_permission_groups_list" "r2_bucket_item_write
 
 resource "cloudflare_account_token" "backend_bucket" {
   account_id = var.cloudflare_account_id
-  name       = "${cloudflare_r2_bucket.backend.name}"
+  name       = cloudflare_r2_bucket.backend.name
   policies = [{
     effect = "allow"
     permission_groups = [
