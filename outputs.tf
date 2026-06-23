@@ -1,13 +1,16 @@
-output "token_key_id" {
-  value       = cloudflare_account_token.backend_bucket.id
-  sensitive   = true
-  description = "Token id for s3 backend"
+locals {
+  buckets_list = [
+    for v in cloudflare_account_token.backend_bucket : {
+      name             = v.name
+      token_key_id     = v.id
+      token_key_secret = sha256(v.value)
+    }
+  ]
 }
 
-output "token_key_secret" {
-  value       = sha256(cloudflare_account_token.backend_bucket.value)
-  sensitive   = true
-  description = "Token secret for s3 backend"
+output "buckets" {
+  value     = local.buckets_list
+  sensitive = true
 }
 
 output "endpoint" {

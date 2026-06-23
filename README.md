@@ -1,6 +1,6 @@
 # Backend Bootstrapping Terraform Module
 
-This Terraform module bootstraps a Cloudflare R2 bucket and then generates a read-write token for the newly created bucket.
+This Terraform module bootstraps Cloudflare R2 buckets and generates read-write tokens for them.
 
 The module was made for fast bootstrapping of S3 backends.
 
@@ -28,7 +28,7 @@ Before running the module, make sure the following requirements are met:
 Ensure these input variables are supplied (e.g., in a `terraform.tfvars` file or via `TF_VAR_*` environment variables):
 
 - `cloudflare_account_id`: Your Cloudflare account ID.
-- `bucket_name`: The name of the R2 bucket to create.
+- `bucket_names`: A set of R2 bucket names to create.
 
 Optional variables:
 
@@ -46,15 +46,29 @@ terraform apply tfplan
 
 ### Using the Newly Created S3 Backend
 
-After successfully running the above commands, check the S3 backend info:
+After successfully running the above commands, check the S3 backend info. Since the bucket credentials are sensitive outputs, you can retrieve them in JSON format:
 
-- `endpoints.s3`: `terraform output endpoint`
-- `AWS_ACCESS_KEY_ID`: `terraform output token_key_id`
-- `AWS_SECRET_ACCESS_KEY`: `terraform output token_key_secret`
+```bash
+terraform output -json buckets
+```
 
-To use the created S3 backend:
+This will return a JSON list of the created buckets and their credentials:
+```json
+[
+  {
+    "name": "<bucket-name>",
+    "token_key_id": "<token-key-id>",
+    "token_key_secret": "<hashed-token-key-secret>"
+  }
+]
+```
 
-1. Keep `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` exported for backend configuration.
+Get the backend endpoint:
+- `endpoints.s3`: `terraform output -raw endpoint`
+
+To use one of the created S3 buckets as a backend:
+
+1. Retrieve the credentials (`token_key_id` and `token_key_secret`) for your chosen bucket from the JSON output list and keep them exported as `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` for your backend configuration.
 2. Set up this block in the `terraform` block:
 
 ```terraform
