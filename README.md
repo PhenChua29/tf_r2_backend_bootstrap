@@ -15,6 +15,7 @@ The module was made for fast bootstrapping of S3 backends.
 - [Reference](#reference)
   - [Variables](#variables)
   - [Outputs](#outputs)
+- [License](#license)
 
 ## Usage Guide
 
@@ -24,7 +25,7 @@ Before running the module, make sure the following requirements are met:
 
 #### Tools
 
-- **[Terraform CLI](https://developer.hashicorp.com/terraform/downloads)**: version `~> 1.15.2`.
+- **[Terraform CLI](https://developer.hashicorp.com/terraform/install)**: version `~> 1.15.2`.
 
 #### Environment Variables
 
@@ -104,7 +105,7 @@ export AWS_ACCESS_KEY_ID='<token_key_id>'
 export AWS_SECRET_ACCESS_KEY='<token_key_secret>'
 ```
 
-2. Set up this block in the `terraform` block (see [S3 backend documentation](https://developer.hashicorp.com/terraform/language/settings/backends/s3) for more details):
+2. Set up this block in the `terraform` block (see [S3 backend documentation](https://developer.hashicorp.com/terraform/language/backend/s3) for more details):
 
 ```hcl
   backend "s3" {
@@ -138,3 +139,7 @@ export AWS_SECRET_ACCESS_KEY='<token_key_secret>'
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `buckets`  | A list of objects containing details and credentials for each created R2 bucket (`name`, `token_key_id`, `token_key_secret`). |
 | `endpoint` | The S3 API endpoint URL for the Cloudflare R2 account.                                                                        |
+
+## License
+
+This project is licensed under the [Apache v2.0 License](LICENSE).
