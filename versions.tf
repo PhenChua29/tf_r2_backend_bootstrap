@@ -6,10 +6,6 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 5.21.0"
     }
-    infisical = {
-      source  = "infisical/infisical"
-      version = "~> 0.16.28"
-    }
   }
 }
 
