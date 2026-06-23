@@ -4,6 +4,18 @@ This Terraform module bootstraps Cloudflare R2 buckets and generates read-write 
 
 The module was made for fast bootstrapping of S3 backends.
 
+## Table of Contents
+
+- [Usage Guide](#usage-guide)
+  - [Prerequisites](#prerequisites)
+    - [Tools](#tools)
+    - [Environment Variables](#environment-variables)
+  - [Example](#example)
+  - [Using the Newly Created S3 Backends](#using-the-newly-created-s3-backends)
+- [Reference](#reference)
+  - [Variables](#variables)
+  - [Outputs](#outputs)
+
 ## Usage Guide
 
 ### Prerequisites
